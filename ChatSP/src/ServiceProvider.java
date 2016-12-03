@@ -23,7 +23,6 @@ public class ServiceProvider {
 					JSONParser Jpar = new JSONParser();
 					JSONObject Jobj = (JSONObject) Jpar.parse(message);
 					String destMRN = (String) Jobj.get("destMRN");
-
 					mh.sendMSG(destMRN, message);
 				} catch (Exception e) {
 					e.printStackTrace();
