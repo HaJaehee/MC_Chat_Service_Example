@@ -1,5 +1,5 @@
 
-# MC_MMS
+# MC_Chat_Service_Example
 MC_Chat_Service_Example 0.1.00 <br/>
 2016.12.03<br/>
 
