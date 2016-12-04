@@ -59,15 +59,6 @@ public class SC1 {
 		
 		//Service Consumer which can only send message
 		MMSClientHandler mh = new MMSClientHandler(myMRN);
-		//Request Callback from the request message
-		mh.setReqCallBack(new MMSClientHandler.reqCallBack() {
-			@Override
-			public String callbackMethod(String message) {
-				System.out.print(message);
-				return "OK";
-			}
-		});
-		
 		
 		String destMRN = "urn:mrn:imo:imo-no:1000007";
 		while (true){
