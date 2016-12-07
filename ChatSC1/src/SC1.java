@@ -40,15 +40,17 @@ public class SC1 {
 		//Request Callback from the request message
 		ph.setReqCallBack(new MMSClientHandler.reqCallBack() {
 			@Override
-			public String callbackMethod(String message) {
+			public String callbackMethod(String messages) {
 				try {
-					JSONParser Jpar = new JSONParser();
-					JSONObject Jobj = (JSONObject) Jpar.parse(message);
-					String srcMRN = (String) Jobj.get("srcMRN");
-					String msg = (String) Jobj.get("msg");
-					
-					System.out.println("srcMRN: "+srcMRN);
-					System.out.println("msg: "+msg);
+					for (String message : messages.split("\n")){
+						JSONParser Jpar = new JSONParser();
+						JSONObject Jobj = (JSONObject) Jpar.parse(message);
+						String srcMRN = (String) Jobj.get("srcMRN");
+						String msg = (String) Jobj.get("msg");
+						
+						System.out.println("srcMRN: "+srcMRN);
+						System.out.println("msg: "+msg);
+					}
 				} catch (ParseException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
