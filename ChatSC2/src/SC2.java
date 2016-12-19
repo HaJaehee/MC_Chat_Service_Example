@@ -45,14 +45,14 @@ public class SC2 {
 		//Service Consumer which can only send message
 		MMSClientHandler mh = new MMSClientHandler(myMRN);
 		
-		String destMRN = "urn:mrn:imo:imo-no:0100006";
+		String dstMRN = "urn:mrn:imo:imo-no:0100006";
 		while (true){
 			String msg = new Scanner(System.in).nextLine();
 			JSONObject Jobj = new JSONObject();
 			Jobj.put("srcMRN", myMRN);
-			Jobj.put("destMRN", destMRN);
+			Jobj.put("dstMRN", dstMRN);
 			Jobj.put("msg", msg);
-			String a = mh.sendMSG("urn:mrn:smart-navi:device:chat-server", Jobj.toString());
+			String a = mh.sendMSG("urn:mrn:smart-navi:device:chat-server-kaist", Jobj.toString());
 		}
 		
 		/*
