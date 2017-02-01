@@ -1,11 +1,12 @@
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import com.kaist.MMSClient.MMSClientHandler;
-import com.kaist.MMSClient.MMSConfiguration;
+import kr.ac.kaist.mms_client.*;
 
 public class SC1 {
 	public static void main(String args[]) throws Exception{
@@ -13,34 +14,18 @@ public class SC1 {
 		int port;
 		//myMRN = args[0];
 		myMRN = "urn:mrn:imo:imo-no:0100006";
-		
-		//Service Consumer can be HTTP server and listen to port 'port'. 
-		//port = Integer.parseInt(args[1]);
-		/*
-		port = 8904;
-		MMSClientHandler mh = new MMSClientHandler(myMRN);
-		mh.setPort(port);
-		//Request Callback from the request message
-		mh.setReqCallBack(new MMSClientHandler.reqCallBack() {
-			@Override
-			public String callbackMethod(String message) {
-				System.out.print(message);
-				return "OK";
-			}
-		});
-		*/
 
-		//MMSConfiguration.MMSURL="127.0.0.1:8088";
-		//MMSConfiguration.CMURL="127.0.0.1";
+		MMSConfiguration.MMSURL="127.0.0.1:8088";
+		MMSConfiguration.CMURL="127.0.0.1";
 		
 		//Service Consumer cannot be HTTP server and should poll from MMS. 
 		MMSClientHandler ph = new MMSClientHandler(myMRN);
 		int pollInterval = 1000;
-		ph.setPolling("urn:mrn:smart-navi:device:mms1",pollInterval);
+		ph.startPolling("urn:mrn:smart-navi:device:mms1",pollInterval);
 		//Request Callback from the request message
-		ph.setReqCallBack(new MMSClientHandler.reqCallBack() {
+		ph.setReqCallBack(new MMSClientHandler.ReqCallBack() {
 			@Override
-			public String callbackMethod(String messages) {
+			public String callbackMethod(Map<String, List<String>> headerField, String messages) {
 				try {
 					for (String message : messages.split("\n")){
 						JSONParser Jpar = new JSONParser();
@@ -69,25 +54,7 @@ public class SC1 {
 			Jobj.put("srcMRN", myMRN);
 			Jobj.put("dstMRN", destMRN);
 			Jobj.put("msg", msg);
-			String a = mh.sendMSG("urn:mrn:smart-navi:device:chat-server-kaist", Jobj.toString());
+			String a = mh.sendPostMsg("urn:mrn:smart-navi:device:chat-server-kaist", Jobj.toString());
 		}
-		
-		/*
-		("urn:mrn:imo:imo-no:1000007", "127.0.0.1:8901"); // SC
-		("urn:mrn:imo:imo-no:0100006", "127.0.0.1:8901"); // SC2
-	    ("urn:mrn:smart-navi:device:tm-server", "127.0.0.1:8902"); // SP
-	    ("urn:mrn:smart-navi:device:mir1", "127.0.0.1:8903"); // MIR
-	    ("urn:mrn:smart-navi:device:msr1", "127.0.0.1:8904"); // MSR
-	    ("urn:mrn:smart-navi:device:mms1", "127.0.0.1:8904"); // MMS
-	    ("urn:mrn:smart-navi:device:cm1", "127.0.0.1:8904"); // CM
-	    */
-
-		//file transferring
-		/*
-		String response = mh.requestFile("urn:mrn:smart-navi:device:tm-server", "test.xml");
-	    System.out.println("response from SC :" + response);
-	    response = mh.sendMSG("urn:mrn:smart-navi:device:tm-server", "hello, SC");
-		System.out.println("response from MSR :" + response);
-		*/
 	}
 }
