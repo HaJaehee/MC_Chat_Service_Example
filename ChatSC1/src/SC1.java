@@ -3,7 +3,7 @@
 File name : SC1.java
 	Service Consumer of a chatting service.
 Author : Jaehee Ha (jaehee.ha@kaist.ac.kr)
-Creation Date : 2016-12-31
+Creation Date : 2016-12-03
 Version : 0.2.00
 Rev. history : 2017-02-01
 	Added header field features.
@@ -28,8 +28,7 @@ public class SC1 {
 		//myMRN = args[0];
 		myMRN = "urn:mrn:imo:imo-no:0100006";
 
-		MMSConfiguration.MMSURL="127.0.0.1:8088";
-		MMSConfiguration.CMURL="127.0.0.1";
+		MMSConfiguration.MMS_URL="127.0.0.1:8088";
 		
 		//Service Consumer cannot be HTTP server and should poll from MMS. 
 		MMSClientHandler ph = new MMSClientHandler(myMRN);
