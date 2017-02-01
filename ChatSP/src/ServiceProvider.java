@@ -1,3 +1,16 @@
+/* -------------------------------------------------------- */
+/** 
+File name : ServiceProvider.java
+	Service Provider of a chatting service.
+Author : Jaehee Ha (jaehee.ha@kaist.ac.kr)
+Creation Date : 2016-12-31
+Version : 0.2.00
+Rev. history : 2017-02-01
+	Added header field features.
+Modifier : Jaehee Ha (jaehee.ha@kaist.ac.kr)
+*/
+/* -------------------------------------------------------- */
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

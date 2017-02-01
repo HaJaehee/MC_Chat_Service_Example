@@ -1,7 +1,7 @@
 
 # MC_Chat_Service_Example
-MC_Chat_Service_Example 0.1.00 <br/>
-2016.12.03<br/>
+MC_Chat_Service_Example 0.3.00 <br/>
+2017.2.1<br/>
 
 
 ## Features
@@ -10,7 +10,7 @@ MC_Chat_Service_Example
 
 ## Usage
 First of all, please configure build path to .jar files.<br/>
-
+[MC_MMS](https://github.com/HaJaehee/MC_MMS/)<br/>
 
 ## Developing
 Jaehee Ha implemented MC_Chat_Service_Example Alpha Version.<br/>
