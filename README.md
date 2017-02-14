@@ -1,7 +1,7 @@
 
 # MC_Chat_Service_Example
-MC_Chat_Service_Example 0.3.00 <br/>
-2017.2.1<br/>
+MC_Chat_Service_Example 0.3.01 <br/>
+2017.2.14<br/>
 
 
 ## Features

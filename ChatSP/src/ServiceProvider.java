@@ -4,7 +4,7 @@ File name : ServiceProvider.java
 	Service Provider of a chatting service.
 Author : Jaehee Ha (jaehee.ha@kaist.ac.kr)
 Creation Date : 2016-12-03
-Version : 0.2.00
+Version : 0.3.01
 Rev. history : 2017-02-01
 	Added header field features.
 Modifier : Jaehee Ha (jaehee.ha@kaist.ac.kr)
@@ -31,7 +31,7 @@ public class ServiceProvider {
 		
 		MMSClientHandler ch = new MMSClientHandler(myMRN);
 		ch.setMSP(port);
-		ch.setReqCallBack(new MMSClientHandler.ReqCallBack() {
+		ch.setCallback(new MMSClientHandler.Callback() {
 			
 			//ChatSP forwards message to dstMRN written in received message
 			@Override
