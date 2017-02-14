@@ -30,7 +30,7 @@ public class ServiceProvider {
 		MMSConfiguration.MMS_URL="127.0.0.1:8088";
 		
 		MMSClientHandler ch = new MMSClientHandler(myMRN);
-		ch.setMSP(port);
+		ch.setPort(port);
 		ch.setCallback(new MMSClientHandler.Callback() {
 			
 			//ChatSP forwards message to dstMRN written in received message
