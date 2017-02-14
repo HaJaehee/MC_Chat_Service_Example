@@ -38,9 +38,9 @@ public class ServiceProvider {
 			public String callbackMethod(Map<String,List<String>> headerField, String message) {
 				try {
 					JSONParser Jpar = new JSONParser();
-					JSONObject Jobj = (JSONObject) Jpar.parse(message);
+					JSONObject Jobj = (JSONObject)((JSONObject) Jpar.parse(message)).get("HTTP Body");
 					String dstMRN = (String) Jobj.get("dstMRN");
-					String res = ch.sendPostMsg(dstMRN, message);
+					String res = ch.sendPostMsg(dstMRN, Jobj.toString());
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
