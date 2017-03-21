@@ -28,16 +28,16 @@ public class SC1 {
 		//myMRN = args[0];
 		myMRN = "urn:mrn:imo:imo-no:0100001";
 
-		MMSConfiguration.MMS_URL="127.0.0.1:8088";
+		//MMSConfiguration.MMS_URL="127.0.0.1:8088";
 		
 		//Service Consumer cannot be HTTP server and should poll from MMS. 
-		MMSClientHandler ph = new MMSClientHandler(myMRN);
+		SecureMMSClientHandler sph = new SecureMMSClientHandler(myMRN);
 
 		int pollInterval = 1000;
-		ph.startPolling("urn:mrn:smart-navi:device:mms1",pollInterval);
+		sph.startPolling("urn:mrn:smart-navi:device:mms1",pollInterval);
 		
 		//Request Callback from the request message
-		ph.setCallback(new MMSClientHandler.Callback() {
+		sph.setCallback(new SecureMMSClientHandler.Callback() {
 			@Override
 			public String callbackMethod(Map<String, List<String>> headerField, String messages) {
 				try {
@@ -60,7 +60,7 @@ public class SC1 {
 		
 
 		//Service Consumer which can only send message
-		MMSClientHandler mh = new MMSClientHandler(myMRN);
+		SecureMMSClientHandler smh = new SecureMMSClientHandler(myMRN);
 		
 		String destMRN = "urn:mrn:imo:imo-no:0100002";
 		while (true){
@@ -69,7 +69,7 @@ public class SC1 {
 			Jobj.put("srcMRN", myMRN);
 			Jobj.put("dstMRN", destMRN);
 			Jobj.put("msg", msg);
-			String a = mh.sendPostMsg("urn:mrn:smart-navi:device:chat-server-kaist", Jobj.toString());
+			String a = smh.sendPostMsg("urn:mrn:smart-navi:device:secure-chat-server-kaist", Jobj.toString());
 		}
 	}
 }
