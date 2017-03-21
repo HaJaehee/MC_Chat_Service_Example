@@ -1,13 +1,10 @@
 /* -------------------------------------------------------- */
 /** 
 File name : ServiceProvider.java
-	Service Provider of a chatting service.
+	Service Provider of a chatting service using HTTPS.
 Author : Jaehee Ha (jaehee.ha@kaist.ac.kr)
-Creation Date : 2016-12-03
-Version : 0.3.01
-Rev. history : 2017-02-01
-	Added header field features.
-Modifier : Jaehee Ha (jaehee.ha@kaist.ac.kr)
+Creation Date : 2017-03-22
+Version : 0.4.0
 */
 /* -------------------------------------------------------- */
 
