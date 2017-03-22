@@ -25,7 +25,7 @@ public class SC2 {
 	public static void main(String args[]) throws Exception{
 		String myMRN;
 		//myMRN = args[0];
-		myMRN = "urn:mrn:imo:imo-no:1000007";
+		myMRN = "urn:mrn:imo:imo-no:0100002";
 		
 		MMSConfiguration.MMS_URL="127.0.0.1:8088";
 
@@ -61,7 +61,7 @@ public class SC2 {
 		//Service Consumer which can only send message
 		MMSClientHandler mh = new MMSClientHandler(myMRN);
 		
-		String dstMRN = "urn:mrn:imo:imo-no:0100006";
+		String dstMRN = "urn:mrn:imo:imo-no:0100001";
 		while (true){
 			String msg = new Scanner(System.in).nextLine();
 			JSONObject Jobj = new JSONObject();

@@ -1,11 +1,12 @@
 
 # MC_Chat_Service_Example
-MC_Chat_Service_Example 0.3.01 <br/>
-2017.2.14<br/>
+MC_Chat_Service_Example compatible with MC_MMS 0.4.0 <br/>
+2017.3.22<br/>
 
 
 ## Features
-MC_Chat_Service_Example
+MC_Chat_Service_Example<br/>
+Supports fully HTTPS communication<br/>
 
 
 ## Usage
