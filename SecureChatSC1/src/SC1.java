@@ -5,6 +5,10 @@ File name : SC1.java
 Author : Jaehee Ha (jaehee.ha@kaist.ac.kr)
 Creation Date : 2017-03-22
 Version : 0.4.0
+
+Version : 0.5.0
+Rev. history : 2017-04-20 
+Modifier : Jaehee Ha (jaehee.ha@kaist.ac.kr)
 */
 /* -------------------------------------------------------- */
 
@@ -30,8 +34,10 @@ public class SC1 {
 		//Service Consumer cannot be HTTP server and should poll from MMS. 
 		SecureMMSClientHandler sph = new SecureMMSClientHandler(myMRN);
 
-		int pollInterval = 1000;
-		sph.startPolling("urn:mrn:smart-navi:device:mms1",pollInterval);
+		int pollInterval = 1;
+		String dstMRN = "urn:mrn:smart-navi:device:mms1";
+		String svcMRN = "urn:mrn:smart-navi:device:secure-chat-server-kaist";
+		sph.startPolling(dstMRN, svcMRN, pollInterval);
 		
 		//Request Callback from the request message
 		sph.setCallback(new SecureMMSClientHandler.Callback() {
@@ -59,12 +65,12 @@ public class SC1 {
 		//Service Consumer which can only send message
 		SecureMMSClientHandler smh = new SecureMMSClientHandler(myMRN);
 		
-		String destMRN = "urn:mrn:imo:imo-no:0100002";
+		String dstSCMRN = "urn:mrn:imo:imo-no:0100002";
 		while (true){
 			String msg = new Scanner(System.in).nextLine();
 			JSONObject Jobj = new JSONObject();
 			Jobj.put("srcMRN", myMRN);
-			Jobj.put("dstMRN", destMRN);
+			Jobj.put("dstMRN", dstSCMRN);
 			Jobj.put("msg", msg);
 			String a = smh.sendPostMsg("urn:mrn:smart-navi:device:secure-chat-server-kaist", Jobj.toString());
 		}
