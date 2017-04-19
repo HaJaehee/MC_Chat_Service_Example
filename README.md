@@ -1,12 +1,13 @@
 
 # MC_Chat_Service_Example
-MC_Chat_Service_Example compatible with MC_MMS 0.4.0 <br/>
-2017.3.22<br/>
+MC_Chat_Service_Example compatible with MC_MMS 0.5.0 <br/>
+2017.4.20<br/>
 
 
 ## Features
 MC_Chat_Service_Example<br/>
 Supports fully HTTPS communication<br/>
+Supports long polling<br/>
 
 
 ## Usage
