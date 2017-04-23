@@ -36,20 +36,26 @@ public class ServiceProvider {
 		
 		MMSClientHandler ch = new MMSClientHandler(myMRN);
 		ch.setPort(port);
-		ch.setCallback(new MMSClientHandler.Callback() {
+		ch.setRequestCallback(new MMSClientHandler.RequestCallback() {
 			
 			//ChatSP forwards message to dstMRN written in received message
 			@Override
-			public String callbackMethod(Map<String,List<String>> headerField, String message) {
+			public String respondToClient(Map<String,List<String>> headerField, String message) {
 				try {
 					JSONParser Jpar = new JSONParser();
-					JSONObject Jobj = (JSONObject)((JSONObject) Jpar.parse(message)).get("HTTP Body");
+					JSONObject Jobj = (JSONObject) Jpar.parse(message);
 					String dstMRN = (String) Jobj.get("dstMRN");
-					String res = ch.sendPostMsg(dstMRN, Jobj.toString());
+					ch.sendPostMsg(dstMRN, Jobj.toString());
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 				return "OK";
+			}
+
+			@Override
+			public int setResponseCode() {
+				// TODO Auto-generated method stub
+				return 200;
 			}
 		});
 	}

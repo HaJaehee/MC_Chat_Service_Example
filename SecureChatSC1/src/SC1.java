@@ -40,9 +40,10 @@ public class SC1 {
 		sph.startPolling(dstMRN, svcMRN, pollInterval);
 		
 		//Request Callback from the request message
-		sph.setCallback(new SecureMMSClientHandler.Callback() {
+		sph.setPollingResponseCallback(new SecureMMSClientHandler.PollingResponseCallback() {
+			
 			@Override
-			public String callbackMethod(Map<String, List<String>> headerField, String messages) {
+			public void callbackMethod(Map<String, List<String>> headerField, String messages) {
 				try {
 					for (String message : messages.split("\n")){
 						JSONParser Jpar = new JSONParser();
@@ -57,13 +58,22 @@ public class SC1 {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				return "OK";
 			}
 		});
 		
 
 		//Service Consumer which can only send message
 		SecureMMSClientHandler smh = new SecureMMSClientHandler(myMRN);
+		
+		smh.setResponseCallback(new SecureMMSClientHandler.ResponseCallback (){
+
+			@Override
+			public void callbackMethod(Map<String, List<String>> headerField, String message) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
 		
 		String dstSCMRN = "urn:mrn:imo:imo-no:0100002";
 		while (true){
@@ -72,7 +82,7 @@ public class SC1 {
 			Jobj.put("srcMRN", myMRN);
 			Jobj.put("dstMRN", dstSCMRN);
 			Jobj.put("msg", msg);
-			String a = smh.sendPostMsg("urn:mrn:smart-navi:device:secure-chat-server-kaist", Jobj.toString());
+			smh.sendPostMsg("urn:mrn:smart-navi:device:secure-chat-server-kaist", Jobj.toString());
 		}
 	}
 }
