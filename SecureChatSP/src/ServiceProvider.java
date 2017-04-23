@@ -31,16 +31,30 @@ public class ServiceProvider {
 		
 		SecureMMSClientHandler sch = new SecureMMSClientHandler(myMRN);
 		sch.setPort(port,jksDirectory,jksPassword);
-		sch.setCallback(new SecureMMSClientHandler.Callback() {
+		sch.setRequestCallback(new SecureMMSClientHandler.RequestCallback() {
+			
+			@Override
+			public int setResponseCode() {
+				// TODO Auto-generated method stub
+				return 200;
+			}
 			
 			//ChatSP forwards message to dstMRN written in received message
 			@Override
-			public String callbackMethod(Map<String,List<String>> headerField, String message) {
+			public String respondToClient(Map<String,List<String>> headerField, String message) {
 				try {
 					JSONParser Jpar = new JSONParser();
-					JSONObject Jobj = (JSONObject)((JSONObject) Jpar.parse(message)).get("HTTP Body");
+					JSONObject Jobj = (JSONObject)Jpar.parse(message);
 					String dstMRN = (String) Jobj.get("dstMRN");
-					String res = sch.sendPostMsg(dstMRN, Jobj.toString());
+					sch.setResponseCallback(new SecureMMSClientHandler.ResponseCallback() {
+						
+						@Override
+						public void callbackMethod(Map<String, List<String>> headerField, String message) {
+							// TODO Auto-generated method stub
+							System.out.println(message);
+						}
+					});
+					sch.sendPostMsg(dstMRN, Jobj.toString());
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
