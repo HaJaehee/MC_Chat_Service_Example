@@ -5,13 +5,16 @@ File name : SC1.java
 Author : Jaehee Ha (jaehee.ha@kaist.ac.kr)
 Creation Date : 2016-12-03
 
-Version : 0.3.01
 Rev. history : 2017-02-01
+Version : 0.3.01
 	Added header field features.
 Modifier : Jaehee Ha (jaehee.ha@kaist.ac.kr)
 
-Version : 0.5.0
 Rev. history : 2017-04-20 
+Version : 0.5.0
+Modifier : Jaehee Ha (jaehee.ha@kaist.ac.kr)
+
+Rev. history : 2017-04-25
 Modifier : Jaehee Ha (jaehee.ha@kaist.ac.kr)
 */
 /* -------------------------------------------------------- */
@@ -36,15 +39,14 @@ public class SC1 {
 		MMSConfiguration.MMS_URL="127.0.0.1:8088";
 		
 		//Service Consumer cannot be HTTP server and should poll from MMS. 
-		MMSClientHandler ph = new MMSClientHandler(myMRN);
+		MMSClientHandler polling = new MMSClientHandler(myMRN);
 
 		int pollInterval = 1;
 		String dstMRN = "urn:mrn:smart-navi:device:mms1";
 		String svcMRN = "urn:mrn:smart-navi:device:chat-server-kaist";
-		ph.startPolling(dstMRN, svcMRN, pollInterval);
-		
-		//Request Callback from the request message
-		ph.setPollingResponseCallback(new MMSClientHandler.PollingResponseCallback() {
+		polling.startPolling(dstMRN, svcMRN, pollInterval, new MMSClientHandler.PollingResponseCallback() {
+			
+			//Response Callback from the polling message
 			@Override
 			public void callbackMethod(Map<String, List<String>> headerField, String messages) {
 				try {
@@ -64,12 +66,11 @@ public class SC1 {
 			
 			}
 		});
-		
-
+	
 		//Service Consumer which can only send message
-		MMSClientHandler mh = new MMSClientHandler(myMRN);
-		mh.setResponseCallback(new MMSClientHandler.ResponseCallback() {
-			
+		MMSClientHandler sender = new MMSClientHandler(myMRN);
+		sender.setSender(new MMSClientHandler.ResponseCallback() {
+			//Response Callback from the request message
 			@Override
 			public void callbackMethod(Map<String, List<String>> headerField, String message) {
 				// TODO Auto-generated method stub
@@ -83,7 +84,7 @@ public class SC1 {
 			Jobj.put("srcMRN", myMRN);
 			Jobj.put("dstMRN", dstSCMRN);
 			Jobj.put("msg", msg);
-			mh.sendPostMsg("urn:mrn:smart-navi:device:chat-server-kaist", Jobj.toString());
+			sender.sendPostMsg("urn:mrn:smart-navi:device:chat-server-kaist", Jobj.toString());
 		}
 	}
 }
