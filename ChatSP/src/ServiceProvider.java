@@ -5,13 +5,16 @@ File name : ServiceProvider.java
 Author : Jaehee Ha (jaehee.ha@kaist.ac.kr)
 Creation Date : 2016-12-03
 
-Version : 0.3.01
 Rev. history : 2017-02-01
+Version : 0.3.01
 	Added header field features.
 Modifier : Jaehee Ha (jaehee.ha@kaist.ac.kr)
 
-Version : 0.5.0
 Rev. history : 2017-04-20 
+Version : 0.5.0
+Modifier : Jaehee Ha (jaehee.ha@kaist.ac.kr)
+
+Rev. history : 2017-04-25
 Modifier : Jaehee Ha (jaehee.ha@kaist.ac.kr)
 */
 /* -------------------------------------------------------- */
@@ -34,9 +37,17 @@ public class ServiceProvider {
 		
 		MMSConfiguration.MMS_URL="127.0.0.1:8088";
 		
-		MMSClientHandler ch = new MMSClientHandler(myMRN);
-		ch.setPort(port);
-		ch.setRequestCallback(new MMSClientHandler.RequestCallback() {
+		MMSClientHandler server = new MMSClientHandler(myMRN);
+		MMSClientHandler sender = new MMSClientHandler(myMRN);
+		sender.setSender(new MMSClientHandler.ResponseCallback() {
+			//Response Callback from the request message
+			@Override
+			public void callbackMethod(Map<String, List<String>> headerField, String message) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		server.setServerPort(port, new MMSClientHandler.RequestCallback() {
 			
 			//ChatSP forwards message to dstMRN written in received message
 			@Override
@@ -45,7 +56,8 @@ public class ServiceProvider {
 					JSONParser Jpar = new JSONParser();
 					JSONObject Jobj = (JSONObject) Jpar.parse(message);
 					String dstMRN = (String) Jobj.get("dstMRN");
-					ch.sendPostMsg(dstMRN, Jobj.toString());
+
+					sender.sendPostMsg(dstMRN, Jobj.toString());
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
