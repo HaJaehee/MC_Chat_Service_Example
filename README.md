@@ -1,27 +1,29 @@
 
 # MC_Chat_Service_Example
-MC_Chat_Service_Example compatible with MC_MMS 0.5.0 <br/>
-2017.4.20<br/>
+MC_Chat_Service_Example Beta Version 0.5.1 <br/>
+Compatible with MC_MMS Beta Version 0.5.1 <br/>
+2017.4.27<br/>
 
 
 ## Features
 MC_Chat_Service_Example<br/>
+Supports fully relaying HTTP(S) messages based on ID<br/>
 Supports fully HTTPS communication<br/>
 Supports long polling<br/>
 
 
 ## Usage
 First of all, please configure build path to .jar files.<br/>
-[MC_MMS](https://github.com/HaJaehee/MC_MMS/)<br/>
+Compatible with [MC_MMS](https://github.com/HaJaehee/MC_MMS/)<br/>
 
 ## Developing
-Jaehee Ha implemented MC_Chat_Service_Example Alpha Version.<br/>
+Jaehee Ha implemented MC_Chat_Service_Example.<br/>
 email: jaehee.ha@kaist.ac.kr<br/>
 
 
 ### Tools
-Created with [Eclipse](https://www.eclipse.org)<br/>
-Used [The Netty Project](http://netty.io/)<br/>
+Created with [Eclipse](https://www.eclipse.org) https://www.eclipse.org<br/>
+Used [The Netty Project](http://netty.io/) http://netty.io/<br/>
 Copyright 2014 The Netty Project<br/>
 <br/>
 The Netty Project licenses this file to you under the Apache License,<br/>
