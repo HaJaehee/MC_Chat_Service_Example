@@ -42,7 +42,7 @@ public class ServiceProvider {
 			@Override
 			public void callbackMethod(Map<String, List<String>> headerField, String message) {
 				// TODO Auto-generated method stub
-				System.out.println(message);
+				
 			}
 		});
 		server.setServerPort(port,jksDirectory,jksPassword, new SecureMMSClientHandler.RequestCallback() {
