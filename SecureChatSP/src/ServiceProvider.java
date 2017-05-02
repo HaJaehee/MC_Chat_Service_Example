@@ -71,6 +71,12 @@ public class ServiceProvider {
 				}
 				return "OK";
 			}
+
+			@Override
+			public Map<String, List<String>> setResponseHeader() {
+				// TODO Auto-generated method stub
+				return null;
+			}
 		});
 	}
 }
