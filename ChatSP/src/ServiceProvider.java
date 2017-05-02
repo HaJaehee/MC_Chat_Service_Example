@@ -20,9 +20,15 @@ Modifier : Jaehee Ha (jaehee.ha@kaist.ac.kr)
 Rev. history : 2017-04-27
 Version : 0.5.1
 Modifier : Jaehee Ha (jaehee.ha@kaist.ac.kr)
+
+Rev. history : 2017-05-02
+Version : 0.5.4
+	Added setting response header
+Modifier : Jaehee Ha (jaehee.ha@kaist.ac.kr)
 */
 /* -------------------------------------------------------- */
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -72,6 +78,12 @@ public class ServiceProvider {
 			public int setResponseCode() {
 				// TODO Auto-generated method stub
 				return 200;
+			}
+
+			@Override
+			public Map<String, List<String>> setResponseHeader() {
+				// TODO Auto-generated method stub
+				return null;
 			}
 		});
 	}
