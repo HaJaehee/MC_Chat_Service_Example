@@ -1,8 +1,8 @@
 
 # MC_Chat_Service_Example
-MC_Chat_Service_Example Beta Version 0.5.4 <br/>
-Compatible with MC_MMS Beta Version 0.5.4 <br/>
-2017.4.27<br/>
+MC_Chat_Service_Example Beta Version 0.5.5 <br/>
+Compatible with MC_MMS Beta Version 0.5.5 <br/>
+2017.5.6<br/>
 
 
 ## Features
